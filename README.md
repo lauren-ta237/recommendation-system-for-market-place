@@ -21,9 +21,6 @@ Features
 Contributing
 Please fork the repository and submit a pull request. For major changes, open an issue to discuss the proposal.
 
-License
-MIT License. See `LICENSE.txt` for details.
-
 API Endpoints
 - `POST /recommend`: Get personalized product recommendations for a user
 - `POST /update`: Update user behavior data
