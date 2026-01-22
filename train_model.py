@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 import pickle
+from pathlib import Path
 
 # Create a sample user-item matrix
 n_users = 100
@@ -15,15 +16,18 @@ user_item_matrix = pd.DataFrame(
 )
 user_item_matrix.index.name = 'user_id'
 
+# Get the directory of the current script
+BASE_DIR = Path(__file__).resolve().parent
+
 # Save the user-item matrix
-user_item_matrix.to_csv('user_item_matrix.csv')
+user_item_matrix.to_csv(BASE_DIR / 'user_item_matrix.csv')
 
 # Train a simple item-based recommendation model
 model = NearestNeighbors(n_neighbors=5, metric='cosine')
 model.fit(user_item_matrix.T)  # transpose for item-based similarity
 
 # Save the model
-with open('model.pkl', 'wb') as f:
+with open(BASE_DIR / 'model.pkl', 'wb') as f:
     pickle.dump(model, f)
 
 print("Created and saved:")
